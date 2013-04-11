@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "baidutieba", "baidutieba\baidutieba.csproj", "{387AA128-7CD7-48C5-BAE3-951DBB27EEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{37A628C3-B9CB-467D-8486-B5A36E77FC7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{387AA128-7CD7-48C5-BAE3-951DBB27EEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387AA128-7CD7-48C5-BAE3-951DBB27EEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387AA128-7CD7-48C5-BAE3-951DBB27EEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387AA128-7CD7-48C5-BAE3-951DBB27EEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A628C3-B9CB-467D-8486-B5A36E77FC7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A628C3-B9CB-467D-8486-B5A36E77FC7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A628C3-B9CB-467D-8486-B5A36E77FC7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A628C3-B9CB-467D-8486-B5A36E77FC7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
