@@ -83,6 +83,10 @@ namespace core
        {
            return sr.ReadLine();
        }
+       public string readtoEnd()
+       {
+           return sr.ReadToEnd();
+       }
 
        public void writeline(string s)
        {
@@ -110,7 +114,7 @@ namespace core
        public string ReadFromFile()
        {
            OpenForRead();
-          var result= readline();
+           var result= readtoEnd();
            close();
            return result;
        }

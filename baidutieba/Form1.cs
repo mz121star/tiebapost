@@ -19,6 +19,7 @@ namespace baidutieba
             InitializeComponent();
         }
         private RFile rFile;
+        private static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -31,24 +32,46 @@ namespace baidutieba
             var a = ((ListBox)sender).SelectedItem;
             if (a != null)
             {
-                webBrowser1.Url = new Uri("http://tieba.baidu.com/f?kw=" + a.ToString());
+                webBrowser1.Url = new Uri(ENV.TieBaUrl + a.ToString());
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            rFile = new RFile(AppDomain.CurrentDomain.BaseDirectory + "/school.txt");
+            rFile = new RFile(BaseDir + "/school.txt");
             listSchools.DataSource = rFile.ReadFromFile().Split(',');
+            BindPost();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var document = webBrowser1.Document;
-            document.GetElementById("title1").InnerText = "大家好，交友贴";
-            HtmlDocumentHelper.GetHtmlByClassName(document, "tb-editor-editarea").InnerHtml =
-                " 大家好！贴吧的朋友们！。　<img unselectable=\"on\" pic_type=\"1\" class=\"BDE_Image\" src=\"http://t1.baidu.com/it/u=305118534,2056704168&amp;fm=21&amp;gp=0.jpg\">　";
-            HtmlElement htmlElement = HtmlDocumentHelper.GetInputByClassName(document,"subbtn_bg");
-            htmlElement.InvokeMember("click");
+            try
+            {
+                var document = webBrowser1.Document;
+                TiebaHelper.Post(document, GetPostContent());
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+           
+         
+        }
+        private void BindPost()
+        {
+            var dir = DirectoryHelper.Getfiles(BaseDir + "/posts");
+            cmbposts.DataSource = dir;
+          
+        }
+        private PostModel GetPostContent()
+        {
+            PostModel post = new PostModel();
+            var file = (FileInfo) cmbposts.SelectedItem;
+            var rfile = new RFile(file.FullName);
+            post.Content = rfile.ReadFromFile();
+            post.Title = file.Name.Replace(".txt","");
+            return post;
         }
     }
 }

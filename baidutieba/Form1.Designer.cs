@@ -32,6 +32,7 @@
             this.listSchools = new System.Windows.Forms.ListBox();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.btnpost = new System.Windows.Forms.Button();
+            this.cmbposts = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -79,11 +80,21 @@
             this.btnpost.UseVisualStyleBackColor = true;
             this.btnpost.Click += new System.EventHandler(this.button2_Click);
             // 
+            // cmbposts
+            // 
+            this.cmbposts.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cmbposts.FormattingEnabled = true;
+            this.cmbposts.Location = new System.Drawing.Point(110, 491);
+            this.cmbposts.Name = "cmbposts";
+            this.cmbposts.Size = new System.Drawing.Size(270, 21);
+            this.cmbposts.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 525);
+            this.Controls.Add(this.cmbposts);
             this.Controls.Add(this.btnpost);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.listSchools);
@@ -101,6 +112,7 @@
         private System.Windows.Forms.ListBox listSchools;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button btnpost;
+        private System.Windows.Forms.ComboBox cmbposts;
     }
 }
 
