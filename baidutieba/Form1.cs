@@ -73,5 +73,14 @@ namespace baidutieba
             post.Title = file.Name.Replace(".txt","");
             return post;
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            LoginModel loginModel = new LoginModel();
+            loginModel.LoginUrl = ENV.BaiduLoginUrl;
+            loginModel.UserName = "平身";
+            loginModel.PassWord = "mz121xqq";
+            TiebaHelper.LoginBaidu(webBrowser1, loginModel);
+        }
     }
 }

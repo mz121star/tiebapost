@@ -21,7 +21,13 @@ namespace baidutieba
         {
             get { return ConfigurationManager.AppSettings["TieBaUser"]; }
         }
-
+        /// <summary>
+        /// 百度登录地址
+        /// </summary>
+       public  static  string BaiduLoginUrl
+       {
+           get { return ConfigurationManager.AppSettings["BaiduLoginUrl"]; }
+       }
         public static bool ReplaceAllImages
         {
             get { return Boolean.Parse(ConfigurationManager.AppSettings["ReplaceAllImages"]); }

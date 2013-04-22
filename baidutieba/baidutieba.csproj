@@ -37,6 +37,7 @@
       <HintPath>..\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -53,6 +54,7 @@
     <Compile Include="DownSchoolInfo.Designer.cs">
       <DependentUpon>DownSchoolInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ENV.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

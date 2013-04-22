@@ -33,6 +33,7 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.btnpost = new System.Windows.Forms.Button();
             this.cmbposts = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -82,18 +83,29 @@
             // 
             // cmbposts
             // 
-            this.cmbposts.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cmbposts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbposts.FormattingEnabled = true;
             this.cmbposts.Location = new System.Drawing.Point(110, 491);
             this.cmbposts.Name = "cmbposts";
             this.cmbposts.Size = new System.Drawing.Size(270, 21);
             this.cmbposts.TabIndex = 5;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(450, 488);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 525);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.cmbposts);
             this.Controls.Add(this.btnpost);
             this.Controls.Add(this.webBrowser1);
@@ -113,6 +125,7 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button btnpost;
         private System.Windows.Forms.ComboBox cmbposts;
+        private System.Windows.Forms.Button button2;
     }
 }
 

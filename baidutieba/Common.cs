@@ -52,5 +52,7 @@ namespace baidutieba
 
             list.DataSource = namelist;
         }
+
+       
     }
 }
