@@ -36,6 +36,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -47,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountManager.Designer.cs">
+      <DependentUpon>AccountManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="DownSchoolInfo.cs">
       <SubType>Form</SubType>
@@ -63,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AccountManager.resx">
+      <DependentUpon>AccountManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownSchoolInfo.resx">
       <DependentUpon>DownSchoolInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,7 +122,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="posts\大连旅游职业中专2013年招生详细说明.txt" />
+    <Content Include="posts\大连旅游中专.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="posts\大连旅游职业中专2013年招生详细说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="posts\帅帅的调酒师.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

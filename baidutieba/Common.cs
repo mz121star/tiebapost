@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using core;
 using core.Service;
 
@@ -53,6 +54,23 @@ namespace baidutieba
             list.DataSource = namelist;
         }
 
-       
+        public static List<LoginModel> ReadAccount(RFile rfile)
+       {
+            string s = "{user:miao,pwd:123;}";
+
+            var accountstr = rfile.ReadFromFile();
+            accountstr=SecurityHelper.DecryptDES(accountstr, ENV.PrivateKEY);
+            var LoginModels = JavaScriptConvert.DeserializeObject<List<LoginModel>>(accountstr);
+            return LoginModels;
+           
+       }
+
+        public static void WriteAccount(RFile rfile,IList<LoginModel> loginModels )
+        {
+            string json = JavaScriptConvert.SerializeObject(loginModels);
+            json = SecurityHelper.EncryptDES(json, ENV.PrivateKEY);
+            rfile.WriteToFile(json);
+
+        }
     }
 }

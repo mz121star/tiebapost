@@ -51,6 +51,7 @@
     <Compile Include="PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFile.cs" />
+    <Compile Include="SecurityHelper.cs" />
     <Compile Include="Service\IProcess.cs" />
     <Compile Include="Service\XueXiaoHtmlProcess.cs" />
     <Compile Include="TiebaHelper.cs" />

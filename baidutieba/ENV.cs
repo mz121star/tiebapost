@@ -28,6 +28,15 @@ namespace baidutieba
        {
            get { return ConfigurationManager.AppSettings["BaiduLoginUrl"]; }
        }
+       /// <summary>
+       /// 加密kEy
+       /// </summary>
+       public static string PrivateKEY
+       {
+           get { return ConfigurationManager.AppSettings["PrivateKEY"]; }
+       }
+
+       public static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
         public static bool ReplaceAllImages
         {
             get { return Boolean.Parse(ConfigurationManager.AppSettings["ReplaceAllImages"]); }

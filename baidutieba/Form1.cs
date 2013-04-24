@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using core;
 using core.Service;
 using mshtml;
@@ -19,7 +21,7 @@ namespace baidutieba
             InitializeComponent();
         }
         private RFile rFile;
-        private static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
+         
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -38,7 +40,7 @@ namespace baidutieba
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            rFile = new RFile(BaseDir + "/school.txt");
+            rFile = new RFile(ENV.BaseDir + "/school.txt");
             listSchools.DataSource = rFile.ReadFromFile().Split(',');
             BindPost();
         }
@@ -60,7 +62,7 @@ namespace baidutieba
         }
         private void BindPost()
         {
-            var dir = DirectoryHelper.Getfiles(BaseDir + "/posts");
+            var dir = DirectoryHelper.Getfiles(ENV.BaseDir + "/posts");
             cmbposts.DataSource = dir;
           
         }
@@ -70,7 +72,7 @@ namespace baidutieba
             var file = (FileInfo) cmbposts.SelectedItem;
             var rfile = new RFile(file.FullName);
             post.Content = rfile.ReadFromFile();
-            post.Title = file.Name.Replace(".txt","");
+            post.Title = file.Name.Replace(".txt","").Replace(".html","");
             return post;
         }
 
@@ -78,9 +80,17 @@ namespace baidutieba
         {
             LoginModel loginModel = new LoginModel();
             loginModel.LoginUrl = ENV.BaiduLoginUrl;
-            loginModel.UserName = "平身";
-            loginModel.PassWord = "mz121xqq";
+            loginModel.UserName = "jarrick@126.com";
+            loginModel.PassWord = "880121mz";
             TiebaHelper.LoginBaidu(webBrowser1, loginModel);
+             
+           
+        }
+
+        private void btnAccountManager_Click(object sender, EventArgs e)
+        {
+            AccountManager accountManager = new AccountManager();
+            accountManager.ShowDialog(this);
         }
     }
 }

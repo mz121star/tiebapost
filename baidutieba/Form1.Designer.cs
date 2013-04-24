@@ -34,6 +34,7 @@
             this.btnpost = new System.Windows.Forms.Button();
             this.cmbposts = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnAccountManager = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -92,19 +93,32 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(450, 488);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(400, 491);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
-            this.button2.Text = "button2";
+            this.button2.Text = "登录百度";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // btnAccountManager
+            // 
+            this.btnAccountManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAccountManager.Location = new System.Drawing.Point(495, 491);
+            this.btnAccountManager.Name = "btnAccountManager";
+            this.btnAccountManager.Size = new System.Drawing.Size(75, 23);
+            this.btnAccountManager.TabIndex = 7;
+            this.btnAccountManager.Text = "账户管理";
+            this.btnAccountManager.UseVisualStyleBackColor = true;
+            this.btnAccountManager.Click += new System.EventHandler(this.btnAccountManager_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 525);
+            this.Controls.Add(this.btnAccountManager);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.cmbposts);
             this.Controls.Add(this.btnpost);
@@ -126,6 +140,7 @@
         private System.Windows.Forms.Button btnpost;
         private System.Windows.Forms.ComboBox cmbposts;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAccountManager;
     }
 }
 
