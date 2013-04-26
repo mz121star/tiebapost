@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using GitSharp.Commands;
 using Newtonsoft.Json;
 using core;
 using core.Service;
@@ -62,7 +63,7 @@ namespace baidutieba
         }
         private void BindPost()
         {
-            var dir = DirectoryHelper.Getfiles(ENV.BaseDir + "/posts");
+            var dir = DirectoryHelper.Getfiles(ENV.BaseDir + ENV.PostFiles);
             cmbposts.DataSource = dir;
           
         }
@@ -91,6 +92,12 @@ namespace baidutieba
         {
             AccountManager accountManager = new AccountManager();
             accountManager.ShowDialog(this);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Common.GetLastContentFromSVN(BindPost);
+
         }
     }
 }

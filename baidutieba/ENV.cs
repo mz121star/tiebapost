@@ -35,6 +35,30 @@ namespace baidutieba
        {
            get { return ConfigurationManager.AppSettings["PrivateKEY"]; }
        }
+        /// <summary>
+       /// Git仓库地址
+       /// </summary>
+       public static string GitDB
+       {
+           get { return ConfigurationManager.AppSettings["GitDB"]; }
+       }
+
+       /// <summary>
+       /// 本地Git仓库地址
+       /// </summary>
+       public static string GitDBLocation
+       {
+           get { return ConfigurationManager.AppSettings["GitDBLocation"]; }
+       }
+
+        /// <summary>
+       /// 本地帖子存储路径
+       /// </summary>
+       public static string PostFiles
+       {
+           get { return ConfigurationManager.AppSettings["PostFiles"]; }
+       }
+       
 
        public static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
         public static bool ReplaceAllImages

@@ -53,7 +53,11 @@ namespace baidutieba
 
             list.DataSource = namelist;
         }
-
+        /// <summary>
+        /// 读取用户账户
+        /// </summary>
+        /// <param name="rfile"></param>
+        /// <returns></returns>
         public static List<LoginModel> ReadAccount(RFile rfile)
        {
             string s = "{user:miao,pwd:123;}";
@@ -64,13 +68,35 @@ namespace baidutieba
             return LoginModels;
            
        }
-
+        /// <summary>
+        /// 写入用户账户
+        /// </summary>
+        /// <param name="rfile"></param>
+        /// <param name="loginModels"></param>
         public static void WriteAccount(RFile rfile,IList<LoginModel> loginModels )
         {
             string json = JavaScriptConvert.SerializeObject(loginModels);
             json = SecurityHelper.EncryptDES(json, ENV.PrivateKEY);
             rfile.WriteToFile(json);
 
+        }
+        /// <summary>
+        /// 从SVN更新最新的程序所需的数据
+        /// </summary>
+        /// <param name="action">回调函数</param>
+        public static void GetLastContentFromSVN(Action action)
+        {
+            var r = VCSHelper.HasRepository(ENV.GitDBLocation);
+            if (!r)
+            {
+                var rep = VCSHelper.Clone(ENV.GitDB, ENV.GitDBLocation);
+            }
+            else
+            {
+                VCSHelper.Update(ENV.GitDBLocation);
+                DirectoryHelper.MoveFolderTo(ENV.BaseDir + ENV.GitDBLocation, ENV.BaseDir + ENV.PostFiles);
+                action();
+            }
         }
     }
 }
