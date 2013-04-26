@@ -63,7 +63,13 @@ namespace baidutieba
             string s = "{user:miao,pwd:123;}";
 
             var accountstr = rfile.ReadFromFile();
-            accountstr=SecurityHelper.DecryptDES(accountstr, ENV.PrivateKEY);
+            if (string.IsNullOrEmpty(accountstr))
+                return new List<LoginModel>() ;
+            accountstr = SecurityHelper.DecryptDES(accountstr, ENV.PrivateKEY);
+            
+          
+            
+          
             var LoginModels = JavaScriptConvert.DeserializeObject<List<LoginModel>>(accountstr);
             return LoginModels;
            
@@ -84,7 +90,7 @@ namespace baidutieba
         /// 从SVN更新最新的程序所需的数据
         /// </summary>
         /// <param name="action">回调函数</param>
-        public static void GetLastContentFromSVN(Action action)
+        public static void GetLastContentFromSVN()
         {
             var r = VCSHelper.HasRepository(ENV.GitDBLocation);
             if (!r)
@@ -97,7 +103,7 @@ namespace baidutieba
                
             }
             DirectoryHelper.MoveFolderTo(ENV.BaseDir + ENV.GitDBLocation, ENV.BaseDir + ENV.PostFiles);
-            action();
+           
         }
     }
 }

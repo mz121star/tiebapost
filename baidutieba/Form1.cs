@@ -5,10 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using GitSharp.Commands;
+
 using Newtonsoft.Json;
 using core;
 using core.Service;
@@ -21,11 +22,16 @@ namespace baidutieba
         {
             InitializeComponent();
         }
+
         private RFile rFile;
-         
+
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            GetSchoolInfo();
+        }
+
+        private void GetSchoolInfo()
+        {
             DownSchoolInfo downSchoolInfo = new DownSchoolInfo(rFile, listSchools);
             downSchoolInfo.ShowDialog(this);
         }
@@ -41,10 +47,23 @@ namespace baidutieba
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            rFile = new RFile(ENV.BaseDir + "/school.txt");
-            listSchools.DataSource = rFile.ReadFromFile().Split(',');
+
+            try
+            {
+
+                rFile = new RFile(ENV.BaseDir + "/school.txt");
+                listSchools.DataSource = rFile.ReadFromFile().Split(',');
+            }
+            catch (NullReferenceException ex)
+            {
+                GetSchoolInfo();
+            }
             BindPost();
+            webBrowser1.Url = new Uri("http://www.baidu.com");
+
         }
+
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -58,22 +77,24 @@ namespace baidutieba
 
                 MessageBox.Show(ex.ToString());
             }
-           
-         
+
+
         }
+
         private void BindPost()
         {
             var dir = DirectoryHelper.Getfiles(ENV.BaseDir + ENV.PostFiles);
             cmbposts.DataSource = dir;
-          
+
         }
+
         private PostModel GetPostContent()
         {
             PostModel post = new PostModel();
-            var file = (FileInfo) cmbposts.SelectedItem;
+            var file = (FileInfo)cmbposts.SelectedItem;
             var rfile = new RFile(file.FullName);
             post.Content = rfile.ReadFromFile();
-            post.Title = file.Name.Replace(".txt","").Replace(".html","");
+            post.Title = file.Name.Replace(".txt", "").Replace(".html", "");
             return post;
         }
 
@@ -84,8 +105,8 @@ namespace baidutieba
             loginModel.UserName = "jarrick@126.com";
             loginModel.PassWord = "880121mz";
             TiebaHelper.LoginBaidu(webBrowser1, loginModel);
-             
-           
+
+
         }
 
         private void btnAccountManager_Click(object sender, EventArgs e)
@@ -96,8 +117,17 @@ namespace baidutieba
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Common.GetLastContentFromSVN(BindPost);
+            Common.GetLastContentFromSVN();
+            BindPost();
+        }
 
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            HtmlElementCollection hec  = webBrowser1.Document.GetElementsByTagName("a");
+            foreach (HtmlElement element in hec)
+            {
+                element.SetAttribute("target","_self");
+            }
         }
     }
 }

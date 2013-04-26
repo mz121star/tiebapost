@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using core;
@@ -43,8 +44,17 @@ namespace baidutieba
 
         private void AccountManager_Load(object sender, EventArgs e)
         {
-             arFile = new RFile(ENV.BaseDir + "/info.acc");
-            BindData();
+            if (!File.Exists(ENV.BaseDir + "/info.acc"))
+            {
+               
+               var s= File.Create(ENV.BaseDir + "/info.acc");
+                s.Close();
+                
+            }
+                
+
+             arFile = new RFile(ENV.BaseDir + "info.acc");
+             BindData();
         }
         private void InitTxt()
         {
@@ -53,9 +63,18 @@ namespace baidutieba
         }
         private void BindData()
         {
-            dataGridView1.AutoGenerateColumns = false;
-            loginModels = Common.ReadAccount(arFile);
-            dataGridView1.DataSource = loginModels;
+            try
+            {
+                dataGridView1.AutoGenerateColumns = false;
+                loginModels = Common.ReadAccount(arFile);
+                dataGridView1.DataSource = loginModels;
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.Message);
+            }
+          
         }
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {

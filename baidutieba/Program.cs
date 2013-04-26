@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.IO;
 using System.Windows.Forms;
+using core;
 
 namespace baidutieba
 {
@@ -15,7 +16,14 @@ namespace baidutieba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (!File.Exists(ENV.BaseDir + "/school.txt"))
+            {
+                var sw = File.Create(ENV.BaseDir + "/school.txt");
+                sw.Close();
+            }
             Application.Run(new Form1());
+
+
         }
     }
 }

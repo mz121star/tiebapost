@@ -41,9 +41,9 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(697, 490);
+            this.button1.Location = new System.Drawing.Point(697, 452);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
+            this.button1.Size = new System.Drawing.Size(92, 21);
             this.button1.TabIndex = 0;
             this.button1.Text = "获取学校";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,9 +54,10 @@
             this.listSchools.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listSchools.FormattingEnabled = true;
+            this.listSchools.ItemHeight = 12;
             this.listSchools.Location = new System.Drawing.Point(697, 6);
             this.listSchools.Name = "listSchools";
-            this.listSchools.Size = new System.Drawing.Size(144, 472);
+            this.listSchools.Size = new System.Drawing.Size(144, 436);
             this.listSchools.TabIndex = 2;
             this.listSchools.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listSchools_MouseDoubleClick);
             // 
@@ -66,18 +67,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(12, 6);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 18);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(679, 472);
+            this.webBrowser1.Size = new System.Drawing.Size(679, 436);
             this.webBrowser1.TabIndex = 3;
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // btnpost
             // 
             this.btnpost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnpost.Location = new System.Drawing.Point(13, 489);
+            this.btnpost.Location = new System.Drawing.Point(13, 451);
             this.btnpost.Name = "btnpost";
-            this.btnpost.Size = new System.Drawing.Size(75, 23);
+            this.btnpost.Size = new System.Drawing.Size(75, 21);
             this.btnpost.TabIndex = 4;
             this.btnpost.Text = "发一条";
             this.btnpost.UseVisualStyleBackColor = true;
@@ -87,17 +90,17 @@
             // 
             this.cmbposts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbposts.FormattingEnabled = true;
-            this.cmbposts.Location = new System.Drawing.Point(110, 491);
+            this.cmbposts.Location = new System.Drawing.Point(110, 453);
             this.cmbposts.Name = "cmbposts";
-            this.cmbposts.Size = new System.Drawing.Size(270, 21);
+            this.cmbposts.Size = new System.Drawing.Size(270, 20);
             this.cmbposts.TabIndex = 5;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(400, 491);
+            this.button2.Location = new System.Drawing.Point(400, 453);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 6;
             this.button2.Text = "登录百度";
             this.button2.UseVisualStyleBackColor = true;
@@ -106,9 +109,9 @@
             // btnAccountManager
             // 
             this.btnAccountManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAccountManager.Location = new System.Drawing.Point(495, 491);
+            this.btnAccountManager.Location = new System.Drawing.Point(495, 453);
             this.btnAccountManager.Name = "btnAccountManager";
-            this.btnAccountManager.Size = new System.Drawing.Size(75, 23);
+            this.btnAccountManager.Size = new System.Drawing.Size(75, 21);
             this.btnAccountManager.TabIndex = 7;
             this.btnAccountManager.Text = "账户管理";
             this.btnAccountManager.UseVisualStyleBackColor = true;
@@ -116,9 +119,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(594, 491);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(594, 453);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(75, 21);
             this.button3.TabIndex = 8;
             this.button3.Text = "获取所有文章";
             this.button3.UseVisualStyleBackColor = true;
@@ -126,9 +130,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 525);
+            this.ClientSize = new System.Drawing.Size(843, 485);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnAccountManager);
             this.Controls.Add(this.button2);
