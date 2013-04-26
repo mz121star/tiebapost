@@ -94,9 +94,10 @@ namespace baidutieba
             else
             {
                 VCSHelper.Update(ENV.GitDBLocation);
-                DirectoryHelper.MoveFolderTo(ENV.BaseDir + ENV.GitDBLocation, ENV.BaseDir + ENV.PostFiles);
-                action();
+               
             }
+            DirectoryHelper.MoveFolderTo(ENV.BaseDir + ENV.GitDBLocation, ENV.BaseDir + ENV.PostFiles);
+            action();
         }
     }
 }
