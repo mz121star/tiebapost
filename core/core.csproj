@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Tamir.SharpSSH">
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DirectoryHelper.cs" />
+    <Compile Include="SystemHelper.cs" />
     <Compile Include="VCSHelper.cs" />
     <Compile Include="HtmlDocumentHelper.cs" />
     <Compile Include="HtmlHelper.cs" />

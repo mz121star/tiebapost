@@ -51,9 +51,9 @@ namespace baidutieba
                 s.Close();
                 
             }
-                
 
-             arFile = new RFile(ENV.BaseDir + "info.acc");
+
+            arFile = Common.GetAccountRFile();
              BindData();
         }
         private void InitTxt()

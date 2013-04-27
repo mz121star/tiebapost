@@ -105,5 +105,13 @@ namespace baidutieba
             DirectoryHelper.MoveFolderTo(ENV.BaseDir + ENV.GitDBLocation, ENV.BaseDir + ENV.PostFiles);
            
         }
+        /// <summary>
+        /// 获取用户账户的RFile路径
+        /// </summary>
+        /// <returns></returns>
+        public static RFile GetAccountRFile()
+        {
+            return new RFile(ENV.BaseDir + "info.acc");
+        }
     }
 }

@@ -25,10 +25,6 @@ namespace baidutieba
 
         private RFile rFile;
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            GetSchoolInfo();
-        }
 
         private void GetSchoolInfo()
         {
@@ -59,11 +55,12 @@ namespace baidutieba
                 GetSchoolInfo();
             }
             BindPost();
-            webBrowser1.Url = new Uri("http://www.baidu.com");
+
+            webBrowser1.Url = new Uri(ENV.BaseDir + "intro/readme.html");
 
         }
 
-        
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -87,7 +84,10 @@ namespace baidutieba
             cmbposts.DataSource = dir;
 
         }
-
+        /// <summary>
+        /// 获取本地文章
+        /// </summary>
+        /// <returns></returns>
         private PostModel GetPostContent()
         {
             PostModel post = new PostModel();
@@ -97,37 +97,121 @@ namespace baidutieba
             post.Title = file.Name.Replace(".txt", "").Replace(".html", "");
             return post;
         }
-
+        /// <summary>
+        /// 登录百度
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click_1(object sender, EventArgs e)
         {
-            LoginModel loginModel = new LoginModel();
-            loginModel.LoginUrl = ENV.BaiduLoginUrl;
-            loginModel.UserName = "jarrick@126.com";
-            loginModel.PassWord = "880121mz";
-            TiebaHelper.LoginBaidu(webBrowser1, loginModel);
+
+            List<LoginModel> accounts = Common.ReadAccount(Common.GetAccountRFile());
+            if (accounts.Count == 0)
+            {
+                MessageBox.Show("还没有配置百度账户，请先配置");
+                ShowAccountManager();
+                return;
+            }
+
+            SelectAccount selectAccount = new SelectAccount(accounts);
+            selectAccount.ShowDialog(this);
+
+            if (selectAccount.CurrentLogin != null && selectAccount.DialogResult == DialogResult.OK)
+            {
+
+                selectAccount.CurrentLogin.LoginUrl = ENV.BaiduLoginUrl;
+
+                TiebaHelper.LoginBaidu(webBrowser1, selectAccount.CurrentLogin);
+
+            }
+            else
+            {
+                if (selectAccount.DialogResult == DialogResult.OK)
+                    MessageBox.Show("选择错误");
+
+            }
+
 
 
         }
 
-        private void btnAccountManager_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// 显示账户管理
+        /// </summary>
+        private void ShowAccountManager()
         {
             AccountManager accountManager = new AccountManager();
             accountManager.ShowDialog(this);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+
+
+        /// <summary>
+        /// 初始化说明页面的事件
+        /// </summary>
+        private void initWebbrowser()
+        {
+            var btnLogin = getPageButton("btn_login");
+            var btnGetContent = getPageButton("btn_getcontent");
+            var btnGetSchool = getPageButton("btn_getschool");
+            
+            AttachEvent(btnLogin, button2_Click_1);
+            if (btnLogin != null)
+            {
+                webBrowser1.DocumentCompleted -= webBrowser1_DocumentCompleted_1;
+            }
+            AttachEvent(btnGetContent, btn_getcontent_Click);
+            AttachEvent(btnGetSchool, btn_getschool_Click);
+        }
+
+        private HtmlElement getPageButton(string id)
+        {
+            HtmlDocument htmlDoc = webBrowser1.Document;
+            HtmlElement btnElement = htmlDoc.GetElementById(id);
+            return btnElement;
+        }
+        private void AttachEvent(HtmlElement btnElement, HtmlElementEventHandler handler)
+        {
+            if (btnElement != null)
+            {
+                btnElement.Click += handler;
+            }
+        }
+
+        private void webBrowser1_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            initWebbrowser();
+        }
+        /// <summary>
+        /// 获取学校信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_getschool_Click(object sender, EventArgs e)
+        {
+            GetSchoolInfo();
+        }
+        /// <summary>
+        /// 从svn获取最新内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_getcontent_Click(object sender, EventArgs e)
         {
             Common.GetLastContentFromSVN();
             BindPost();
         }
-
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        /// <summary>
+        /// 账户管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_AccountManager_Click(object sender, EventArgs e)
         {
-            HtmlElementCollection hec  = webBrowser1.Document.GetElementsByTagName("a");
-            foreach (HtmlElement element in hec)
-            {
-                element.SetAttribute("target","_self");
-            }
+            ShowAccountManager();
         }
+
+
     }
 }
